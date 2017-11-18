@@ -4,7 +4,10 @@
  * and open the template in the editor.
  */
 package proyecto_poo;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -113,50 +116,162 @@ public class Planificador extends Persona {
         System.out.println("PROFESOR: "+profesores);
         System.out.println("CAPACIDAD: "+capacidad);
         System.out.println("HORARIO: "+horario);
+        //Almacenar en un archivo (horarios_planificados.txt)con el siguiente orden:
+        //Materia,Profesor,Capacidad,Horario
         //Almacenar ya sea en un array list o en una lista concatenada!!
         //Validar que no haya otro curso en ese horario y dia!!
     }
     public void CrearProfesor() throws IOException{
-        String aux="";
-        String animal="",pocion="", deporte="";
-        int tipo_mago;
+        System.out.println("/** PROFESOR **/");
+        String op_crear="";
         FileWriter fw=null;
         File file=null;
         file=new File("Profesores.txt");
         fw= new FileWriter(file);
-        System.out.println("/** PROFESOR **/");
-        System.out.println("Ingrese Nombre: ");
-        nombre=sc.nextLine();
-        System.out.println("Ingrese Apellido: ");
-        apellido=sc.nextLine();
-        System.out.println("Ingrese Edad: ");
-        edad=sc.nextInt();
-        System.out.println("Varita: ");
-        varita=sc.nextLine();
-        System.out.println("Fecha de Ingreso: \n");
-        fecha_ingreso=sc.nextLine();
-        System.out.println("Tipos de Magos/Brujas");
-        System.out.println("1.Animago");
-        System.out.println("2.Metamorfomago");
-        System.out.println("3.Estandar");
-        System.out.println("Elija el tipo de mago/bruja que es: ");
-        tipo_mago=sc.nextInt();
-        switch(tipo_mago){
-            case(1):
-                System.out.println("En que clase de animal puede convertirse: ");
-                animal=sc.nextLine();
-                aux=nombre+","+apellido+","+edad+","+varita+","+fecha_ingreso+","+"A"+","+animal+","+"hechizo1"+","+"null"+","+"+null";
-            case(2):
-                System.out.println("Que pocion utiliza: ");
-                pocion=sc.nextLine();
-                aux=nombre+","+apellido+","+edad+","+varita+","+fecha_ingreso+","+"M"+","+"null"+","+"null"+","+pocion+","+"+null";
-            case(3):
-                System.out.println("Deporte: ");
-                deporte=sc.nextLine();
-                aux=nombre+","+apellido+","+edad+","+varita+","+fecha_ingreso+","+"M"+","+"null"+","+"null"+","+"+null"+","+deporte;
+        String aux="";
+        String animal="",pocion="", deporte="";
+        int tipo_mago;
+        while(op_crear!="S"){
+            System.out.println("Ingrese Nombre: ");
+            nombre=sc.nextLine();
+            System.out.println("Ingrese Apellido: ");
+            apellido=sc.nextLine();
+            System.out.println("Ingrese Edad: ");
+            edad=sc.nextInt();
+            System.out.println("Varita: ");
+            varita=sc.nextLine();
+            System.out.println("Fecha de Ingreso: \n");
+            fecha_ingreso=sc.nextLine();
+            System.out.println("Tipos de Magos/Brujas");
+            System.out.println("1.Animago");
+            System.out.println("2.Metamorfomago");
+            System.out.println("3.Estandar");
+            System.out.println("Elija el tipo de mago/bruja que es: ");
+            tipo_mago=sc.nextInt();
+            switch(tipo_mago){
+                case(1):
+                    System.out.println("En que clase de animal puede convertirse: ");
+                    animal=sc.nextLine();
+                    aux=nombre+","+apellido+","+edad+","+varita+","+fecha_ingreso+","+"A"+","+animal+","+"hechizo1"+","+"null"+","+"+null";
+                case(2):
+                    System.out.println("Que pocion utiliza: ");
+                    pocion=sc.nextLine();
+                    aux=nombre+","+apellido+","+edad+","+varita+","+fecha_ingreso+","+"M"+","+"null"+","+"null"+","+pocion+","+"+null";
+                case(3):
+                    System.out.println("Deporte: ");
+                    deporte=sc.nextLine();
+                    aux=nombre+","+apellido+","+edad+","+varita+","+fecha_ingreso+","+"N"+","+"null"+","+"null"+","+"+null"+","+deporte;
+            }
+            System.out.println("Desea guardar los datos? S/N: ");
+            op_crear=sc.nextLine().toUpperCase();
         }
         fw.write(aux);
-        
+        System.out.println("Sus datos se han guardado correctamente ");
+        fw.close();
+        //No se guarda en ninguna lista ni nada por el estilo
+        //Solo se guarda en el archivo de texto
+        //De ser necesario se puede guardar en otro lado!
+    }
+    public void CrearEstudiante() throws IOException{
+        System.out.println("/** CREAR ESTUDIANTE **/");
+        String op_crear="";
+        FileWriter fw=null;
+        File file=null;
+        file=new File("Estudiantes.txt");
+        fw= new FileWriter(file);
+        String aux="";
+        String animal="",pocion="", deporte="";
+        int tipo_mago;
+        while(op_crear!="S"){
+            System.out.println("Ingrese Nombre: ");
+            nombre=sc.nextLine();
+            System.out.println("Ingrese Apellido: ");
+            apellido=sc.nextLine();
+            System.out.println("Ingrese Edad: ");
+            edad=sc.nextInt();
+            System.out.println("Varita: ");
+            varita=sc.nextLine();
+            System.out.println("Casa: ");
+            casa=sc.nextLine();
+            System.out.println("\nTipos de Magos/Brujas");
+            System.out.println("1.Animago");
+            System.out.println("2.Metamorfomago");
+            System.out.println("3.Estandar");
+            System.out.println("Elija el tipo de mago/bruja que es: ");
+            tipo_mago=sc.nextInt();
+            switch(tipo_mago){
+                case(1):
+                    aux=nombre+","+apellido+","+edad+","+varita+","+casa+","+"A";
+                case(2):
+                    aux=nombre+","+apellido+","+edad+","+varita+","+casa+","+"M";
+                case(3):
+                    aux=nombre+","+apellido+","+edad+","+varita+","+casa+","+"N";
+            }
+            System.out.println("Desea guardar los datos? S/N: ");
+            op_crear=sc.nextLine().toUpperCase();
+        }
+        fw.write(aux);
+        System.out.println("Sus datos se han guardado correctamente ");
+        fw.close();
+        //No se guarda en ninguna lista ni nada por el estilo
+        //Solo se guarda en el archivo de texto
+        //De ser necesario se puede guardar en otro lado!
+    }
+    public void VerHorariosPlanificados() throws FileNotFoundException, IOException{
+        int op_listado;
+        String materias="";
+        System.out.println("/** CURSOS PLANIFICADOS **/");
+        System.out.println("/** MATERIAS **/\n");
+        System.out.println("1.Pociones");
+        System.out.println("2.Defensa contra las artes oscuras");
+        System.out.println("3.Adivinacion");
+        System.out.println("4.Astronomia");
+        System.out.println("5.Historia de la Magia");
+        System.out.println("6.Herbologia");
+        System.out.println("7.Encantamientos");
+        System.out.println("8.Vuelo");
+        System.out.println("Elija una materia del listado de materias: ");
+        op_listado=sc.nextInt();
+        String filename="horarios_planificados.txt";
+        String line= null;
+        switch(op_listado){
+                case 1:
+                    materias="Pociones";
+                case 2:
+                    materias="Defensa contra las artes oscuras";
+                case 3:
+                    materias="Adivinacion";
+                case 4:
+                    materias="Astronomia";
+                case 5:
+                    materias="Historia de la Magia";
+                case 6:
+                    materias="Herbologia";
+                case 7:
+                    materias="Encantamientos";
+                case 8:
+                    materias="Vuelo";
+                default:
+                    System.out.println("Error");
+            }
+        try{
+            FileReader fileReader= new FileReader(filename);
+            BufferedReader bufferedReader= new BufferedReader(fileReader);
+            while((line=bufferedReader.readLine())!=null){
+                String array1[]=line.split(",");
+                if(materias.equals(array1[0])){
+                    System.out.println("MATERIA: "+array1[0]);
+                    System.out.println("PROFESOR: "+array1[1]);
+                    System.out.println("CAPACIDAD: "+array1[2]);
+                    System.out.println("HORARIO: "+array1[3]);
+                }
+            }
+        }
+        catch(FileNotFoundException ex){
+         System.out.println("Error");   
+        } 
+    }
+    public void ListadoEstudiantes(){
         
     }
 }
