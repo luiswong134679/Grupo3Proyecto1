@@ -1,0 +1,162 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package proyecto_poo;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Scanner;
+import java.util.ArrayList;
+
+/**
+ *
+ * @author E6530
+ */
+public class Planificador extends Persona {
+    ArrayList<String> lista_materias= new ArrayList<>();
+    Scanner sc= new Scanner(System.in);
+    private int opcion;
+    private String materia;
+    private String fecha_ingreso;
+    private String tipo_mago;
+    private String profesor;
+
+    public Planificador(int opcion, String materia, String fecha_ingreso, String tipo_mago, String profesor, String nombre, String apellido, int edad, String casa, String varita) {
+        super(nombre, apellido, edad, casa, varita);
+        this.opcion = opcion;
+        this.materia = materia;
+        this.fecha_ingreso = fecha_ingreso;
+        this.tipo_mago = tipo_mago;
+        this.profesor = profesor;
+    }
+    public void CrearCurso(){
+        String op_crear="";
+        int capacidad=0;
+        String dia="";
+        String horario="";
+        String materias="";
+        String profesores="";
+        while(op_crear!="S"){
+            int op_curso;
+            int op_profesor;
+            System.out.println("/** MATERIAS **/\n");
+            System.out.println("1.Pociones");
+            System.out.println("2.Defensa contra las artes oscuras");
+            System.out.println("3.Adivinacion");
+            System.out.println("4.Astronomia");
+            System.out.println("5.Historia de la Magia");
+            System.out.println("6.Herbologia");
+            System.out.println("7.Encantamientos");
+            System.out.println("8.Vuelo");
+            System.out.println("Elija una materia del listado de materias: ");
+            op_curso=sc.nextInt();
+            while((op_curso>9) || (op_curso<1)){
+                System.out.println("Elija una materia valida del listado de materias: ");
+                op_curso=sc.nextInt(); 
+            }
+            System.out.println("/** PROFESORES **/\n");
+            System.out.println("1. Quirinus Quirell ");
+            System.out.println("2. Gilderoy Lockhart ");
+            System.out.println("3. Remus Lupin ");
+            System.out.println("4. Severus Snape ");
+            System.out.println("Elija un profesor del listado de profesores: ");
+            op_profesor=sc.nextInt();
+            while((op_profesor<1)|| (op_profesor>4)){
+                System.out.println("Elija un profesor valido del listado de profesores: ");
+                op_profesor=sc.nextInt();
+            }
+
+            switch(op_curso){
+                case 1:
+                    materias="Pociones";
+                case 2:
+                    materias="Defensa contra las artes oscuras";
+                case 3:
+                    materias="Adivinacion";
+                case 4:
+                    materias="Astronomia";
+                case 5:
+                    materias="Historia de la Magia";
+                case 6:
+                    materias="Herbologia";
+                case 7:
+                    materias="Encantamientos";
+                case 8:
+                    materias="Vuelo";
+                default:
+                    System.out.println("Error");
+            }
+            switch(op_profesor){
+                case 1:
+                    profesores="Quirinus Quirell";
+                case 2:
+                    profesores="Filderoy Lockhart";
+                case 3:
+                    profesores="Remus Lupin";
+                case 4:
+                    profesores="Severus Snape";
+            }
+            System.out.println("Ingrese la capacidad del curso"+materias+": ");    
+            capacidad=sc.nextInt();
+            System.out.println("Ingrese el dia: ");
+            dia=sc.nextLine();
+            System.out.println("Ingrese el horario del curso: ");
+            horario=sc.nextLine();
+            System.out.println("Desea crear el curso con la informacion establecida: ");
+            op_crear=sc.nextLine().toUpperCase();
+        }
+        System.out.println("Se ha creado el curso:\n ");
+        System.out.println("MATERIA: "+materias);
+        System.out.println("PROFESOR: "+profesores);
+        System.out.println("CAPACIDAD: "+capacidad);
+        System.out.println("HORARIO: "+horario);
+        //Almacenar ya sea en un array list o en una lista concatenada!!
+        //Validar que no haya otro curso en ese horario y dia!!
+    }
+    public void CrearProfesor() throws IOException{
+        String aux="";
+        String animal="",pocion="", deporte="";
+        int tipo_mago;
+        FileWriter fw=null;
+        File file=null;
+        file=new File("Profesores.txt");
+        fw= new FileWriter(file);
+        System.out.println("/** PROFESOR **/");
+        System.out.println("Ingrese Nombre: ");
+        nombre=sc.nextLine();
+        System.out.println("Ingrese Apellido: ");
+        apellido=sc.nextLine();
+        System.out.println("Ingrese Edad: ");
+        edad=sc.nextInt();
+        System.out.println("Varita: ");
+        varita=sc.nextLine();
+        System.out.println("Fecha de Ingreso: \n");
+        fecha_ingreso=sc.nextLine();
+        System.out.println("Tipos de Magos/Brujas");
+        System.out.println("1.Animago");
+        System.out.println("2.Metamorfomago");
+        System.out.println("3.Estandar");
+        System.out.println("Elija el tipo de mago/bruja que es: ");
+        tipo_mago=sc.nextInt();
+        switch(tipo_mago){
+            case(1):
+                System.out.println("En que clase de animal puede convertirse: ");
+                animal=sc.nextLine();
+                aux=nombre+","+apellido+","+edad+","+varita+","+fecha_ingreso+","+"A"+","+animal+","+"hechizo1"+","+"null"+","+"+null";
+            case(2):
+                System.out.println("Que pocion utiliza: ");
+                pocion=sc.nextLine();
+                aux=nombre+","+apellido+","+edad+","+varita+","+fecha_ingreso+","+"M"+","+"null"+","+"null"+","+pocion+","+"+null";
+            case(3):
+                System.out.println("Deporte: ");
+                deporte=sc.nextLine();
+                aux=nombre+","+apellido+","+edad+","+varita+","+fecha_ingreso+","+"M"+","+"null"+","+"null"+","+"+null"+","+deporte;
+        }
+        fw.write(aux);
+        
+        
+    }
+}
