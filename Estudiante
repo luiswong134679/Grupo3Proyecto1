@@ -10,12 +10,77 @@ package proyecto_poo;
  * @author E6530
  */
 public class Estudiante extends Persona{
-    public int opcion;
+    public String tipo_mago;
 
-    public Estudiante(int opcion, String nombre, String apellido, int edad, String casa, String varita) {
+    public Estudiante(String nombre, String apellido, int edad, String casa, String varita, String tipo_mago) {
         super(nombre, apellido, edad, casa, varita);
-        this.opcion = opcion;
+        this.tipo_mago=tipo_mago;
+        
+        
     }
-    
+
+    public String getTipo_mago() {
+        return tipo_mago;
+    }
+
+    public void setTipo_mago(String tipo_mago) {
+        this.tipo_mago = tipo_mago;
+    }
+
+    @Override
+    public String getNombre() {
+        return nombre;
+    }
+
+    @Override
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    @Override
+    public String getApellido() {
+        return apellido;
+    }
+
+    @Override
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    @Override
+    public int getEdad() {
+        return edad;
+    }
+
+    @Override
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
+
+    @Override
+    public String getCasa() {
+        return casa;
+    }
+
+    @Override
+    public void setCasa(String casa) {
+        this.casa = casa;
+    }
+
+    @Override
+    public String getVarita() {
+        return varita;
+    }
+
+    @Override
+    public void setVarita(String varita) {
+        this.varita = varita;
+    }
+   
+    @Override
+    public String toString(){
+        String mensaje= getNombre()+"--"+getApellido()+"--"+getEdad()+"--"+getCasa()+"--"+getVarita();
+        return mensaje;
+    }
     
 }
