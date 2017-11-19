@@ -10,6 +10,6 @@ package proyecto_poo;
  * @author E6530
  */
 public interface Volador {
-    public abstract void Volar();
-    public abstract void Despegar();
+    public void Volar();
+    public void Despegar();
 }
