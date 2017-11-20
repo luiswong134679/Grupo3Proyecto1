@@ -4,19 +4,25 @@
  * and open the template in the editor.
  */
 package proyecto_poo;
-
+import java.util.*;
 /**
  *
  * @author E6530
  */
-public class Estudiante extends Persona{
+public class Estudiante extends Persona {
     public String tipo_mago;
 
+    /**
+     *
+     * @param nombre
+     * @param apellido
+     * @param edad
+     * @param casa
+     * @param varita
+     **/
     public Estudiante(String nombre, String apellido, int edad, String casa, String varita, String tipo_mago) {
         super(nombre, apellido, edad, casa, varita);
-        this.tipo_mago=tipo_mago;
-        
-        
+        this.tipo_mago=tipo_mago;      
     }
 
     public String getTipo_mago() {
@@ -46,41 +52,37 @@ public class Estudiante extends Persona{
     public void setApellido(String apellido) {
         this.apellido = apellido;
     }
-
     @Override
     public int getEdad() {
         return edad;
-    }
-
+    }    
     @Override
     public void setEdad(int edad) {
         this.edad = edad;
     }
-
     @Override
     public String getCasa() {
         return casa;
     }
-
     @Override
     public void setCasa(String casa) {
         this.casa = casa;
     }
-
     @Override
     public String getVarita() {
         return varita;
     }
-
     @Override
     public void setVarita(String varita) {
         this.varita = varita;
     }
-   
     @Override
     public String toString(){
         String mensaje= getNombre()+"--"+getApellido()+"--"+getEdad()+"--"+getCasa()+"--"+getVarita();
         return mensaje;
     }
+    
+    
+
     
 }
