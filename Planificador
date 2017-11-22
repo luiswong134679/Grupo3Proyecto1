@@ -30,90 +30,92 @@ public class Planificador{
     public Planificador(){
         
     }
-    public void CrearCurso(){
+    public void CrearCurso() throws IOException{
         String op_crear="";
         int capacidad=0;
-        String dia="";
+        String dia="",aux_1="";
         String horario="";
         String materias="";
         String profesores="";
-        while(!"S".equals(op_crear)){
-            int op_curso;
-            int op_profesor;
-            System.out.println("/** MATERIAS **/\n");
-            System.out.println("1.Pociones");
-            System.out.println("2.Defensa contra las artes oscuras");
-            System.out.println("3.Adivinacion");
-            System.out.println("4.Astronomia");
-            System.out.println("5.Historia de la Magia");
-            System.out.println("6.Herbologia");
-            System.out.println("7.Encantamientos");
-            System.out.println("8.Vuelo");
-            System.out.println("Elija una materia del listado de materias: ");
-            op_curso=sc.nextInt();
-            while((op_curso>9) || (op_curso<1)){
-                System.out.println("Elija una materia valida del listado de materias: ");
-                op_curso=sc.nextInt(); 
-            }
-            System.out.println("/** PROFESORES **/\n");
-            System.out.println("1. Quirinus Quirell ");
-            System.out.println("2. Gilderoy Lockhart ");
-            System.out.println("3. Remus Lupin ");
-            System.out.println("4. Severus Snape ");
-            System.out.println("Elija un profesor del listado de profesores: ");
-            op_profesor=sc.nextInt();
-            while((op_profesor<1)|| (op_profesor>4)){
-                System.out.println("Elija un profesor valido del listado de profesores: ");
+        File file=new File("Cursos.txt");
+        try (FileWriter fw = new FileWriter(file)) {
+            while(!"S".equals(op_crear)){
+                int op_curso;
+                int op_profesor;
+                System.out.println("/** MATERIAS **/\n");
+                System.out.println("1.Pociones");
+                System.out.println("2.Defensa contra las artes oscuras");
+                System.out.println("3.Adivinacion");
+                System.out.println("4.Astronomia");
+                System.out.println("5.Historia de la Magia");
+                System.out.println("6.Herbologia");
+                System.out.println("7.Encantamientos");
+                System.out.println("8.Vuelo");
+                System.out.println("Elija una materia del listado de materias: ");
+                op_curso=sc.nextInt();
+                while((op_curso>9) || (op_curso<1)){
+                    System.out.println("Elija una materia valida del listado de materias: ");
+                    op_curso=sc.nextInt(); 
+                }
+                System.out.println("/** PROFESORES **/\n");
+                System.out.println("1. Quirinus Quirell ");
+                System.out.println("2. Gilderoy Lockhart ");
+                System.out.println("3. Remus Lupin ");
+                System.out.println("4. Severus Snape ");
+                System.out.println("Elija un profesor del listado de profesores: ");
                 op_profesor=sc.nextInt();
-            }
+                while((op_profesor<1)|| (op_profesor>4)){
+                    System.out.println("Elija un profesor valido del listado de profesores: ");
+                    op_profesor=sc.nextInt();
+                }
 
-            switch(op_curso){
-                case 1:
-                    materias="Pociones";
-                case 2:
-                    materias="Defensa contra las artes oscuras";
-                case 3:
-                    materias="Adivinacion";
-                case 4:
-                    materias="Astronomia";
-                case 5:
-                    materias="Historia de la Magia";
-                case 6:
-                    materias="Herbologia";
-                case 7:
-                    materias="Encantamientos";
-                case 8:
-                    materias="Vuelo";
-                default:
-                    System.out.println("Error");
+                switch(op_curso){
+                    case 1:
+                        materias="Pociones";
+                    case 2:
+                        materias="Defensa contra las artes oscuras";
+                    case 3:
+                        materias="Adivinacion";
+                    case 4:
+                        materias="Astronomia";
+                    case 5:
+                        materias="Historia de la Magia";
+                    case 6:
+                        materias="Herbologia";
+                    case 7:
+                        materias="Encantamientos";
+                    case 8:
+                        materias="Vuelo";
+                    default:
+                        System.out.println("Error");
+                }
+                switch(op_profesor){
+                    case 1:
+                        profesores="Quirinus Quirell";
+                    case 2:
+                        profesores="Filderoy Lockhart";
+                    case 3:
+                        profesores="Remus Lupin";
+                    case 4:
+                        profesores="Severus Snape";
+                }
+                System.out.println("Ingrese la capacidad del curso"+materias+": ");    
+                capacidad=sc.nextInt();
+                System.out.println("Ingrese el dia: ");
+                dia=sc.next();
+                System.out.println("Ingrese el horario del curso: ");
+                horario=sc.next();
+                System.out.println("Desea crear el curso con la informacion establecida: ");
+                op_crear=sc.next().toUpperCase();
             }
-            switch(op_profesor){
-                case 1:
-                    profesores="Quirinus Quirell";
-                case 2:
-                    profesores="Filderoy Lockhart";
-                case 3:
-                    profesores="Remus Lupin";
-                case 4:
-                    profesores="Severus Snape";
-            }
-            System.out.println("Ingrese la capacidad del curso"+materias+": ");    
-            capacidad=sc.nextInt();
-            System.out.println("Ingrese el dia: ");
-            dia=sc.next();
-            System.out.println("Ingrese el horario del curso: ");
-            horario=sc.next();
-            System.out.println("Desea crear el curso con la informacion establecida: ");
-            op_crear=sc.next().toUpperCase();
+            aux_1=materias+"--"+profesores+"--"+capacidad+"--"+dia+"--"+horario;
+            System.out.println("Se ha creado el curso:\n ");
+            System.out.println("MATERIA: "+materias);
+            System.out.println("PROFESOR: "+profesores);
+            System.out.println("CAPACIDAD: "+capacidad);
+            System.out.println("HORARIO: "+horario);
+            fw.write(aux_1);
         }
-        System.out.println("Se ha creado el curso:\n ");
-        System.out.println("MATERIA: "+materias);
-        System.out.println("PROFESOR: "+profesores);
-        System.out.println("CAPACIDAD: "+capacidad);
-        System.out.println("HORARIO: "+horario);
-        
-        //Almacenar en un archivo (horarios_planificados.txt)con el siguiente orden:
-        //Materia,Profesor,Capacidad,Horario
         //Almacenar ya sea en un array list o en una lista concatenada!!
         //Validar que no haya otro curso en ese horario y dia!!
     }
@@ -121,8 +123,10 @@ public class Planificador{
         System.out.println("/** PROFESOR **/");
         String op_crear="";
         File file=new File("Profesores.txt");
+        ArrayList<Profesor> lista_profesores;
+        lista_profesores = new ArrayList<>();
         try (FileWriter fw = new FileWriter(file)) {
-            String aux="",nombre="",apellido="",varita="";
+            String aux="",nombre="",apellido="",varita="",casa="";
             String animal="",pocion="", deporte="";
             int tipo_magos,edad=0;
             while(!"S".equals(op_crear)){
@@ -132,6 +136,8 @@ public class Planificador{
                 apellido=sc.next();
                 System.out.println("Ingrese Edad: ");
                 edad=sc.nextInt();
+                System.out.println("Ingrese casa: ");
+                casa=sc.nextLine();
                 System.out.println("Varita: ");
                 varita=sc.next();
                 System.out.println("Fecha de Ingreso: \n");
@@ -159,7 +165,8 @@ public class Planificador{
                 System.out.println("Desea guardar los datos? S/N: ");
                 op_crear=sc.next().toUpperCase();
             }   fw.write(aux);
-            System.out.println("Sus datos se han guardado correctamente ");
+            Profesor profesor=new Profesor(nombre, apellido, edad, casa, varita);
+            lista_profesores.add(profesor);
             //No se guarda en ninguna lista ni nada por el estilo
             //Solo se guarda en el archivo de texto
             //De ser necesario se puede guardar en otro lado!
