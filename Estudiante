@@ -81,7 +81,25 @@ public class Estudiante extends Persona {
         String mensaje= getNombre()+"--"+getApellido()+"--"+getEdad()+"--"+getCasa()+"--"+getVarita();
         return mensaje;
     }
+    public void VerCursosPlanificados(){
+        //Lee el archivo de cursos planificados y presenta la informacion segun la opcion seleccionada
+        
+    }
+    public void Registro(){
+       //Lee el archivo de cursos planificados, presenta la informacion
+       //Se elige la opcion del curso al que se quiere registrar
+       //"S" si se quiere registrar o "N" si desea elegir otro curso
+       //Si "S" entonces se escribe en un archivo llamado "registro.txt", la informacion del estudiante se solicitara y se validara con el archivo "estudiantes.txt"
+       //La informacion a escribir sera la que el estudiante ingrese y adicional se anexara una "E" de extraordinario segun la validacion de edad
+       //para cursar la materia (Si es menor), si es mayor que la edad se anexara "N"
     
+    }
+    public String DescripcionDeVuelo(){
+        String mensaje="";
+        return mensaje;
+        //Si es mago normal puede volar con una nimbus 2000
+        //El resto de magos vuelan con cualquier cosa
+    }
     
 
     
