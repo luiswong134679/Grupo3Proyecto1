@@ -310,13 +310,23 @@ public class Planificador{
                         return a.apellido.compareTo(b.apellido);
                    }
                 }
-            });  
+            });               
             case 3:
-                
-                   
-                                    
-            default:
-                
+                Collections.sort(lista_estudiantes, new Comparator<Estudiante>() {
+                @Override
+                public int compare(Estudiante a, Estudiante b) {
+                    int resultado =Integer.compare( a.n_materias, b.n_materias);
+                    if (resultado != 0 ) {
+                        return resultado;
+                    }
+                    resultado = a.nombre.compareTo(b.nombre);
+                    if (resultado != 0 ) {
+                        return resultado;
+                    } else {
+                        return a.nombre.compareTo(b.nombre);
+                   }
+                }
+            });      
         }
     }
 }
