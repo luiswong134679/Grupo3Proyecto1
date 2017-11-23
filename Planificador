@@ -212,7 +212,9 @@ public class Planificador{
                 }
                 System.out.println("Desea guardar los datos? S/N: ");
                 op_crear=sc.next().toUpperCase();
-            }   Estudiante estudiante=new Estudiante(nombre,apellido,edad,casa,varita,tipo);
+            }
+            int n_materias=0;
+            Estudiante estudiante=new Estudiante(nombre,apellido,edad,casa,varita,tipo,n_materias);
             lista_estudiantes.add(estudiante);
             fw.write(aux);
             System.out.println("Sus datos se han guardado correctamente ");
