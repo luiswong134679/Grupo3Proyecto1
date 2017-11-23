@@ -277,12 +277,27 @@ public class Planificador{
          System.out.println("Error");   
         } 
     }
-    public void ListadoEstudiantes(){
+    
+    public void ListadoEstudiantes() throws FileNotFoundException, IOException{
         int op_sort;
         System.out.println("/** LISTADO DE ESTUDIANTES **/");
         System.out.println("1. Edad\n2. Nombre\n3. Numero de materias registradas");
         System.out.println(lista_estudiantes);
         op_sort=sc.nextInt();
+        FileReader reader=new FileReader("registro.txt");
+                BufferedReader br= new BufferedReader(reader);
+                String line="";
+                for(Estudiante estudiante: lista_estudiantes){
+                    int n=0;
+                    while(null!=line){
+                        line= br.readLine();
+                        if (estudiante.apellido.equals(line.split(",")[2])){
+                            n=n+1;
+                            estudiante.setN_materias(n);
+                        }
+                    }
+                }
+        reader.close();
         switch (op_sort) {
             case 1:
                 Collections.sort(lista_estudiantes, new Comparator<Estudiante>() {
