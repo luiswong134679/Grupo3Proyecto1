@@ -11,6 +11,7 @@ import java.util.*;
  */
 public class Estudiante extends Persona {
     public String tipo_mago;
+    public int n_materias;
 
     /**
      *
@@ -20,9 +21,18 @@ public class Estudiante extends Persona {
      * @param casa
      * @param varita
      **/
-    public Estudiante(String nombre, String apellido, int edad, String casa, String varita, String tipo_mago) {
+    public Estudiante(String nombre, String apellido, int edad, String casa, String varita, String tipo_mago, int n_materias) {
         super(nombre, apellido, edad, casa, varita);
-        this.tipo_mago=tipo_mago;      
+        this.tipo_mago=tipo_mago;     
+        this.n_materias=n_materias;
+    }
+
+    public int getN_materias() {
+        return n_materias;
+    }
+
+    public void setN_materias(int n_materias) {
+        this.n_materias = n_materias;
     }
 
     public String getTipo_mago() {
